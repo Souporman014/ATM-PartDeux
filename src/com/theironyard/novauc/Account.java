@@ -61,9 +61,9 @@ public class Account {
 
     //Not sure if this method is being properly used
     //TODO run debug mode to find if and where this program is being called from
-    public Account currentUser(String logName){
-        return Account.information.get(logName);
-    }
+//    //public Account currentUser(String logName){
+//        return Account.information.get(logName);
+//    }
 
     //This is a small method that sets up the first few accounts one of which is an administrator account
     public void startUP() throws Exception {
@@ -81,16 +81,26 @@ public class Account {
         System.out.println("###############      HELLO AND WELCOME      ################");
         System.out.println("###############       BANK OF AMERICA       ################");
         System.out.println("####                                                    ####");
-        System.out.println("####     [CUSTOMER LOGIN]     [ADMINISTRATOR LOGIN]     ####");
+        System.out.println("####              CHOOSE WHICH LOGIN                    ####");
         System.out.println("####                                                    ####");
-        int runLoop=1;
-        while (runLoop==1){
-            String whichLogin=Main.kb.nextLine();
-            if(whichLogin.equalsIgnoreCase("customer login")){
+        System.out.println("####     [CUSTOMER LOGIN]     [ADMINISTRATOR LOGIN]     ####");
+        System.out.println("####                      or                            ####");
+        System.out.println("####                  [EXIT ATM]                        ####");
+        System.out.println("####                                                    ####");
+        while (true){
+            String whichLogin=Main.kb4.nextLine();
+            if(whichLogin.equalsIgnoreCase("customer login")||whichLogin.equalsIgnoreCase("customer")){
                 password();
             }
-            else if(whichLogin.equalsIgnoreCase("administrator login")){
+            else if(whichLogin.equalsIgnoreCase("administrator login")||whichLogin.equalsIgnoreCase("admin")||whichLogin.equalsIgnoreCase("administrator")){
                 adminLogin();
+            }
+            else if(whichLogin.equalsIgnoreCase("exit atm")||whichLogin.equalsIgnoreCase("exit")) {
+                Main.program.cancel();
+            }
+            else {
+                System.out.println("You have entered improper answer try again");
+                welcomeMessage();
             }
         }
     }
@@ -99,11 +109,11 @@ public class Account {
     //Which if the program works correctly only a certain user can create and delete their own account
     public void adminLogin() throws Exception {
         System.out.print("Please enter your the administrator log-in name: ");
-        String adminLogin = Main.kb.nextLine().toUpperCase();
+        String adminLogin = Main.kb3.nextLine().toUpperCase();
 
         if (adminLogin.equalsIgnoreCase(information.get("ADMINISTRATOR").getName())) {
             System.out.print("Please enter your password: ");
-            String password = Main.kb.nextLine().toLowerCase();
+            String password = Main.kb2.nextLine().toLowerCase();
             if (password.equals(information.get("ADMINISTRATOR").getPassword())) {
                 Main.program.AdminProgram("ADMINISTRATOR");
             } else {
@@ -113,22 +123,40 @@ public class Account {
                     System.out.println("You have entered the wrong password you have "
                             + attempts + " more attempts left");
                     System.out.print("Please enter your correct password: ");
-                    password = Main.kb.nextLine();
+                    password = Main.kb4.nextLine();
                     attempts--;
                 }
-                if (attempts == 0) {
-                    password();
+                if (attempts <= 0) {
+                    System.out.println("You have run out of attempts");
+                    System.out.println("Returning to the welcome page");
+                    welcomeMessage();
                 } else {
                     Main.program.AdminProgram("ADMINISTRATOR");
                 }
+            }
+        }
+        else {
+            System.out.println("Wrong administrator login name entered");
+            boolean keepTrying=true;
+            while(keepTrying) {
+                System.out.println("Would you like to try entering administrator login name again [Y/N]");
+                System.out.println("If not you will return to the home screen");
+                System.out.println();
+                String retryPass=Main.kb4.nextLine();
+                if(retryPass.equalsIgnoreCase("y"))
+                    adminLogin();
+                else if(retryPass.equalsIgnoreCase("n")){
+                    keepTrying=false;
+                }
+                else
+                    System.out.println("Wrong input");
             }
         }
     }
 
     //This is a password verifier meant for customer login and uses most of the same methodology as the admin login
     public void password() throws Exception {
-        int bugFixLoop = 1;
-        while (bugFixLoop == 1) {
+        while (true) {
             System.out.print("Please enter your log-in name: ");
             String logName = Main.kb.nextLine().toUpperCase();
 
@@ -137,7 +165,7 @@ public class Account {
                 password();
             } else if ((information.containsKey(logName))) {
                 System.out.print("Please enter your password: ");
-                String password = Main.kb.nextLine().toLowerCase();
+                String password = Main.kb2.nextLine().toLowerCase();
                 if (password.equals(information.get(logName).getPassword())) {
                     Main.program.Program(logName);
                 } else {
@@ -146,7 +174,7 @@ public class Account {
                         System.out.println("You have entered the wrong password you have "
                                 + attempts + " more attempts left");
                         System.out.println("Please enter your correct password: ");
-                        password = Main.kb.nextLine();
+                        password = Main.kb3.nextLine();
                         attempts--;
                     }
                     if (attempts <= 0) {
@@ -159,7 +187,7 @@ public class Account {
             } else {
                 System.out.println("Have entered a name not inside this database");
                 System.out.println("Would you like to create a new account [Y/N]");
-                String userAnswer = Main.kb.nextLine();
+                String userAnswer = Main.kb4.nextLine();
                 createUser(userAnswer);
             }
         }
@@ -169,19 +197,23 @@ public class Account {
     public void createUser(String response)throws Exception {
         if (response.equalsIgnoreCase("n")) {
             System.out.println("Thank you for your patronage.");
-            System.exit(0);
+            System.out.println();
+            Main.program.cancel();
         }
-        else {
+        else if(response.equalsIgnoreCase("y")){
             System.out.println("Please enter the new username you would like to create");
-            String createUser = Main.kb.nextLine();
-
+            String createUser = Main.kb2.nextLine();
+            if (information.containsKey(createUser)){
+                System.out.println("this username is already in use please try again with a unique username");
+                createUser("y");
+            }
             System.out.println("Default password setup as username");
 
             System.out.println("Please enter the current checking balance in that account");
-            double createCheckBal = Main.kb.nextDouble();
+            double createCheckBal = Main.kb3.nextDouble();
 
             System.out.println("Please enter the current savings balance in that account");
-            double createSavingBal = Main.kb.nextDouble();
+            double createSavingBal = Main.kb4.nextDouble();
 
             information.put(createUser, new Account(createUser.toUpperCase(), createUser.toLowerCase(), createCheckBal,createSavingBal));
             System.out.println("###############      NEW USER CREATED      ################");
@@ -201,7 +233,7 @@ public class Account {
         int deletingChoice = 3;
         while (deletingChoice > 0) {
             System.out.println("Last Chance. Please confirm that you would like to continue deleting your account [Y/N]");
-            String deleteChoice = Main.kb.nextLine();
+            String deleteChoice = Main.kb2.nextLine();
             if (deleteChoice.equalsIgnoreCase("y")) {
                 information.remove(userKey);
                 System.out.println("Your account has been deleted");
@@ -217,36 +249,39 @@ public class Account {
     }
 
     //For admin login to delete ANY user
-    public void deleteUser()throws Exception{
+    public void deleteUser()throws Exception {
         System.out.println("Please enter the username you would like to delete");
-        Main.kb.nextLine();
-        String deleteThisUser = Main.kb.nextLine().toUpperCase();
-        System.out.println();
-        System.out.println("You are about to delete "+ information.get(deleteThisUser).getName()+"s' account");
-        System.out.println("That account holds the current balances of");
-        System.out.printf("## [Checking Account] $%.2f   [Savings Account] $%.2f ##",
-                information.get(deleteThisUser).getCheckingBalance(),
-                information.get(deleteThisUser).getSavingBalance());
-        System.out.println();
-        int deletingChoice=3;
-        while(deletingChoice>0) {
-            System.out.println("Last Chance. Please confirm that you would like to continue deleting "
-                    + information.get(deleteThisUser).getName() + "s' account [Y/N]");
-            String deleteChoice = Main.kb.nextLine();
-            if(deleteChoice.equalsIgnoreCase("y")){
-                information.remove(deleteThisUser);
-                System.out.println(deleteThisUser.toLowerCase()+"'s Account has been deleted");
-                System.out.println("You will now be returning to the main menu");
-                welcomeMessage();
+        String deleteThisUser = Main.kb3.nextLine().toUpperCase();
+        if (information.containsKey(deleteThisUser)) {
+            System.out.println();
+            System.out.println("You are about to delete " + information.get(deleteThisUser).getName() + "s' account");
+            System.out.println("That account holds the current balances of");
+            System.out.printf("## [Checking Account] $%.2f   [Savings Account] $%.2f ##",
+                    information.get(deleteThisUser).getCheckingBalance(),
+                    information.get(deleteThisUser).getSavingBalance());
+            System.out.println();
+            int deletingChoice = 3;
+            while (deletingChoice > 0) {
+                System.out.println("Last Chance. Please confirm that you would like to continue deleting "
+                        + information.get(deleteThisUser).getName() + "s' account [Y/N]");
+                String deleteChoice = Main.kb2.nextLine();
+                if (deleteChoice.equalsIgnoreCase("y")) {
+                    information.remove(deleteThisUser);
+                    System.out.println(deleteThisUser.toLowerCase() + "'s Account has been deleted");
+                    System.out.println("You will now be returning to the main menu");
+                    welcomeMessage();
+                } else if (deleteChoice.equalsIgnoreCase("n")) {
+                    System.out.println("Deleting account canceled");
+                    System.out.println("You wil now return to the main login");
+                    welcomeMessage();
+                } else
+                    deletingChoice--;
             }
-            else if(deleteChoice.equalsIgnoreCase("n")){
-                System.out.println("Deleting account canceled");
-                System.out.println("You wil now return to the main login");
-                welcomeMessage();
-            }
-            else
-                deletingChoice--;
+            Main.program.cancel();
         }
-        Main.program.cancel();
+        else {
+            System.out.println("The name you have entered does not match a current account holder. Please try again");
+            deleteUser();
+        }
     }
 }
