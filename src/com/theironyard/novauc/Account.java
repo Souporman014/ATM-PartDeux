@@ -9,41 +9,38 @@ public class Account {
     double checkingBalance;
     double savingBalance;
 
+    //This section is for Getters and Setters
+    //Some of the setters are not fully being used so far
+    //Such as set name and set password
     public String getName() {
         return name;
     }
-
     public void setName(String name) {
         this.name = name;
     }
-
     public String getPassword() {
         return password;
     }
-
     public void setPassword(String password) {
         this.password = password;
     }
-
     public double getCheckingBalance() {
         return checkingBalance;
     }
-
     public void setCheckingBalance(double checkingBalance) {
         this.checkingBalance = checkingBalance;
     }
-
     public double getSavingBalance() {
         return savingBalance;
     }
-
     public void setSavingBalance(double savingBalance) {
         this.savingBalance = savingBalance;
     }
 
+    //These are two constructors for use in other classes
+    //One is empty and the other is set to gather the overloaded uses
     public Account() {
     }
-
     public Account(String name, String password, double checkingBalance, double savingBalance) {
         this.name = name;
         this.password = password;
@@ -52,15 +49,23 @@ public class Account {
 
     }
 
+    //This is the constructor for the HashMap setting up the Key = a String that dictates the loginName
+    //And the value section is set up to hold objects from the Accounts class
+    public static HashMap<String, Account> information = new HashMap<>();
+
+    //Not sure if this method is being properly used
+    //TODO run debug mode to find if and where this program is being called from
     public Account transferPerson (String transferPerson) {
         return Account.information.get(transferPerson);
-
     }
+
+    //Not sure if this method is being properly used
+    //TODO run debug mode to find if and where this program is being called from
     public Account currentUser(String logName){
         return Account.information.get(logName);
     }
-    public static HashMap<String, Account> information = new HashMap<>();
 
+    //This is a small method that sets up the first few accounts one of which is an administrator account
     public void startUP() throws Exception {
 
         information.put("ADMINISTRATOR", new Account("Administrator", "admin", 1000000.99,14234.44));
@@ -69,15 +74,18 @@ public class Account {
         information.put("WILL", new Account("Will", "will", 9437.44,3344.32));
 
     }
+
+    //This is the welcome message method it has 4k graphics and very demanding of the cpu
+    //This is to distinguish between the regular customer and an administrator login
     public void welcomeMessage()throws Exception{
         System.out.println("###############      HELLO AND WELCOME      ################");
         System.out.println("###############       BANK OF AMERICA       ################");
         System.out.println("####                                                    ####");
         System.out.println("####     [CUSTOMER LOGIN]     [ADMINISTRATOR LOGIN]     ####");
         System.out.println("####                                                    ####");
-        String whichLogin="customer login";
-        while (whichLogin.equalsIgnoreCase("customer login" )|| whichLogin.equalsIgnoreCase("administrator login")){
-            whichLogin=Main.kb.nextLine();
+        int runLoop=1;
+        while (runLoop==1){
+            String whichLogin=Main.kb.nextLine();
             if(whichLogin.equalsIgnoreCase("customer login")){
                 password();
             }
@@ -86,6 +94,9 @@ public class Account {
             }
         }
     }
+
+    //This is the administrator login this has the ability to create any new user and delete any user
+    //Which if the program works correctly only a certain user can create and delete their own account
     public void adminLogin() throws Exception {
         System.out.print("Please enter your the administrator log-in name: ");
         String logName = Main.kb.nextLine().toUpperCase();
@@ -108,12 +119,13 @@ public class Account {
                 if (attempts == 0) {
                     password();
                 } else {
-                    Main.program.Program("administrator");
+                    Main.program.AdminProgram("administrator");
                 }
             }
         }
     }
 
+    //This is a password verifier meant for customer login and uses most of the same methodology as the admin login
     public void password() throws Exception {
 
         System.out.print("Please enter your log-in name: ");
@@ -123,25 +135,24 @@ public class Account {
             System.out.println("You have entered a wrong name");
             password();
         }
-        else if(logName.equalsIgnoreCase(information.get(logName).getName())){
-            //if (checkName.getName().equalsIgnoreCase(name)) {
+        else if((information.containsKey(logName))){
             System.out.print("Please enter your password: ");
             String password = Main.kb.nextLine().toLowerCase();
-            //String password=prePassword.toLowerCase();
             if (password.equals(information.get(logName).getPassword())) {
                 Main.program.Program(logName);
-            } else {
+            }
+            else {
                 int attempts = 3;
-
-                while (attempts != 0 || !password.equals(information.get(logName).getPassword())) {
+                while (attempts != 0 && !password.equals(information.get(logName).getPassword())) {
                     System.out.println("You have entered the wrong password you have "
                             + attempts + " more attempts left");
-                    System.out.print("Please enter your correct password: ");
+                    System.out.println("Please enter your correct password: ");
                     password = Main.kb.nextLine();
                     attempts--;
                 }
-                if (attempts==0){
-                    password();
+                if (attempts<=0){
+                    System.out.println("You have no more attempts. You will now go to the home screen");
+                    welcomeMessage();
                 }
                 else{
                     Main.program.Program(logName);
@@ -149,26 +160,24 @@ public class Account {
             }
         }
         else{
-            System.out.println("Have not entered a name inside this database");
+            System.out.println("Have entered a name not inside this database");
             System.out.println("Would you like to create a new account [Y/N]");
-            String response = Main.kb.nextLine();
-            createUser(response);
+            String userAnswer = Main.kb.nextLine();
+            createUser(userAnswer);
         }
     }
 
-
+    //This is a create user function only accessible to create a new user for themselves or an admin can create any
     public void createUser(String response)throws Exception {
-
         if (response.equalsIgnoreCase("n")) {
             System.out.println("Thank you for your patronage.");
             System.exit(0);
-        } else {
-            //int userLimit = 1;
+        }
+        else {
             System.out.println("Please enter the new username you would like to create");
             String createUser = Main.kb.nextLine();
 
             System.out.println("Default password setup as username");
-            String newPass = Main.kb.nextLine();
 
             System.out.println("Please enter the current checking balance in that account");
             double createCheckBal = Main.kb.nextDouble();
@@ -176,48 +185,9 @@ public class Account {
             System.out.println("Please enter the current savings balance in that account");
             double createSavingBal = Main.kb.nextDouble();
 
-            information.put(createUser, new Account(createUser, newPass, createCheckBal,createSavingBal));
+            information.put(createUser, new Account(createUser.toUpperCase(), createUser.toLowerCase(), createCheckBal,createSavingBal));
             System.out.println("###############      NEW USER CREATED      ################");
-            System.out.println("################      "+createUser+"      ###############");
-//            switch (userLimit) {
-//                case 1:
-//                    information.put(createUser, new Account(createUser, newPass, createCheckBal,createSavingBal));
-//
-//                    information.get(createUser).getCheckingBalance();
-//
-////                    Main.User1.setName(createUser);
-////                    Main.User1.setPassword(newPass);
-////                    Main.User1.setCheckingBalance(createCheckBal);
-////                    Main.User1.setSavingBalance(createSavingBal);
-//
-//                    break;
-//                case 2:
-//
-//                    Main.User2.setName(createUser);
-//                    Main.User2.setPassword(newPass);
-//                    Main.User2.setCheckingBalance(createCheckBal);
-//                    Main.User2.setSavingBalance(createSavingBal);
-//                    break;
-//                case 3:
-//
-//                    Main.User3.setName(createUser);
-//                    Main.User3.setPassword(newPass);
-//                    Main.User3.setCheckingBalance(createCheckBal);
-//                    Main.User3.setSavingBalance(createSavingBal);
-//                    break;
-//                case 4:
-//
-//                    Main.User4.setName(createUser);
-//                    Main.User4.setPassword(newPass);
-//                    Main.User4.setCheckingBalance(createCheckBal);
-//                    Main.User4.setSavingBalance(createSavingBal);
-//                    break;
-//                default:
-//                    System.out.println("The System is out of room for new Users");
-//                    System.out.println("the system will now shutdown thank you for your patronage");
-//                    System.exit(0);
-//            }
-//            userLimit++;
+
         }
         password();
     }

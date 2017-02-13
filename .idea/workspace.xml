@@ -2,16 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2b167dab-66b4-4860-b457-12d730ab019d" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/theironyard/novauc/ATMProgram.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/theironyard/novauc/Account.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/compiler.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/copyright/profiles_settings.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/description.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/project-template.xml" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ATM-PartDeux.iml" afterPath="$PROJECT_DIR$/ATM-PartDeux.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/theironyard/novauc/Main.java" afterPath="$PROJECT_DIR$/src/com/theironyard/novauc/Main.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/theironyard/novauc/ATMProgram.java" afterPath="$PROJECT_DIR$/src/com/theironyard/novauc/ATMProgram.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/theironyard/novauc/Account.java" afterPath="$PROJECT_DIR$/src/com/theironyard/novauc/Account.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -43,22 +35,16 @@
       <file leaf-file-name="Account.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/theironyard/novauc/Account.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-910">
-              <caret line="54" column="21" lean-forward="false" selection-start-line="54" selection-start-column="21" selection-end-line="54" selection-end-column="21" />
+            <state relative-caret-position="275">
+              <caret line="194" column="0" lean-forward="true" selection-start-line="194" selection-start-column="0" selection-end-line="194" selection-end-column="0" />
               <folding>
-                <element signature="e#205#206#0" expanded="true" />
-                <element signature="e#232#233#0" expanded="true" />
-                <element signature="e#500#501#0" expanded="true" />
-                <element signature="e#538#539#0" expanded="true" />
-                <element signature="e#600#601#0" expanded="true" />
-                <element signature="e#654#655#0" expanded="true" />
-                <element signature="e#694#695#0" expanded="true" />
-                <element signature="e#730#731#0" expanded="true" />
-                <element signature="e#788#789#0" expanded="true" />
-                <element signature="e#838#839#0" expanded="true" />
-                <element signature="e#1297#1298#0" expanded="true" />
-                <element signature="e#1352#1353#0" expanded="true" />
-                <element signature="e#6885#6919#0" expanded="false" />
+                <element signature="method#Account#0;class#Account#0" expanded="false" />
+                <element signature="method#Account#1;class#Account#0" expanded="false" />
+                <element signature="method#startUP#0;class#Account#0" expanded="false" />
+                <element signature="method#welcomeMessage#0;class#Account#0" expanded="false" />
+                <element signature="method#adminLogin#0;class#Account#0" expanded="false" />
+                <element signature="method#password#0;class#Account#0" expanded="false" />
+                <element signature="method#createUser#0;class#Account#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -67,9 +53,12 @@
       <file leaf-file-name="ATMProgram.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/theironyard/novauc/ATMProgram.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="59" column="31" lean-forward="false" selection-start-line="59" selection-start-column="31" selection-end-line="59" selection-end-column="31" />
-              <folding />
+            <state relative-caret-position="123">
+              <caret line="29" column="16" lean-forward="false" selection-start-line="29" selection-start-column="16" selection-end-line="29" selection-end-column="16" />
+              <folding>
+                <element signature="method#setChange#0;class#ATMProgram#0" expanded="false" />
+                <element signature="method#checkBalance#0;class#ATMProgram#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -456,7 +445,7 @@
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24959612" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24959612" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24959612" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39871383" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -506,7 +495,7 @@
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="36" />
+      <option name="time" value="42" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -549,31 +538,28 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/theironyard/novauc/Account.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-910">
-          <caret line="54" column="21" lean-forward="false" selection-start-line="54" selection-start-column="21" selection-end-line="54" selection-end-column="21" />
+        <state relative-caret-position="275">
+          <caret line="194" column="0" lean-forward="true" selection-start-line="194" selection-start-column="0" selection-end-line="194" selection-end-column="0" />
           <folding>
-            <element signature="e#205#206#0" expanded="true" />
-            <element signature="e#232#233#0" expanded="true" />
-            <element signature="e#500#501#0" expanded="true" />
-            <element signature="e#538#539#0" expanded="true" />
-            <element signature="e#600#601#0" expanded="true" />
-            <element signature="e#654#655#0" expanded="true" />
-            <element signature="e#694#695#0" expanded="true" />
-            <element signature="e#730#731#0" expanded="true" />
-            <element signature="e#788#789#0" expanded="true" />
-            <element signature="e#838#839#0" expanded="true" />
-            <element signature="e#1297#1298#0" expanded="true" />
-            <element signature="e#1352#1353#0" expanded="true" />
-            <element signature="e#6885#6919#0" expanded="false" />
+            <element signature="method#Account#0;class#Account#0" expanded="false" />
+            <element signature="method#Account#1;class#Account#0" expanded="false" />
+            <element signature="method#startUP#0;class#Account#0" expanded="false" />
+            <element signature="method#welcomeMessage#0;class#Account#0" expanded="false" />
+            <element signature="method#adminLogin#0;class#Account#0" expanded="false" />
+            <element signature="method#password#0;class#Account#0" expanded="false" />
+            <element signature="method#createUser#0;class#Account#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/theironyard/novauc/ATMProgram.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="59" column="31" lean-forward="false" selection-start-line="59" selection-start-column="31" selection-end-line="59" selection-end-column="31" />
-          <folding />
+        <state relative-caret-position="123">
+          <caret line="29" column="16" lean-forward="false" selection-start-line="29" selection-start-column="16" selection-end-line="29" selection-end-column="16" />
+          <folding>
+            <element signature="method#setChange#0;class#ATMProgram#0" expanded="false" />
+            <element signature="method#checkBalance#0;class#ATMProgram#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
