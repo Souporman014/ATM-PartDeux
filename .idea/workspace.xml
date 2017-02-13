@@ -35,16 +35,13 @@
       <file leaf-file-name="Account.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/theironyard/novauc/Account.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="275">
-              <caret line="194" column="0" lean-forward="true" selection-start-line="194" selection-start-column="0" selection-end-line="194" selection-end-column="0" />
+            <state relative-caret-position="110">
+              <caret line="57" column="61" lean-forward="true" selection-start-line="57" selection-start-column="61" selection-end-line="57" selection-end-column="61" />
               <folding>
                 <element signature="method#Account#0;class#Account#0" expanded="false" />
                 <element signature="method#Account#1;class#Account#0" expanded="false" />
-                <element signature="method#startUP#0;class#Account#0" expanded="false" />
                 <element signature="method#welcomeMessage#0;class#Account#0" expanded="false" />
                 <element signature="method#adminLogin#0;class#Account#0" expanded="false" />
-                <element signature="method#password#0;class#Account#0" expanded="false" />
-                <element signature="method#createUser#0;class#Account#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -53,11 +50,13 @@
       <file leaf-file-name="ATMProgram.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/theironyard/novauc/ATMProgram.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="123">
-              <caret line="29" column="16" lean-forward="false" selection-start-line="29" selection-start-column="16" selection-end-line="29" selection-end-column="16" />
+            <state relative-caret-position="1500">
+              <caret line="220" column="47" lean-forward="false" selection-start-line="220" selection-start-column="47" selection-end-line="220" selection-end-column="47" />
               <folding>
-                <element signature="method#setChange#0;class#ATMProgram#0" expanded="false" />
                 <element signature="method#checkBalance#0;class#ATMProgram#0" expanded="false" />
+                <element signature="method#withdrawChecking#0;class#ATMProgram#0" expanded="false" />
+                <element signature="method#withdrawSavings#0;class#ATMProgram#0" expanded="false" />
+                <element signature="method#cancel#0;class#ATMProgram#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -495,7 +494,7 @@
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="42" />
+      <option name="time" value="43" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -538,27 +537,26 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/theironyard/novauc/Account.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="275">
-          <caret line="194" column="0" lean-forward="true" selection-start-line="194" selection-start-column="0" selection-end-line="194" selection-end-column="0" />
+        <state relative-caret-position="110">
+          <caret line="57" column="61" lean-forward="true" selection-start-line="57" selection-start-column="61" selection-end-line="57" selection-end-column="61" />
           <folding>
             <element signature="method#Account#0;class#Account#0" expanded="false" />
             <element signature="method#Account#1;class#Account#0" expanded="false" />
-            <element signature="method#startUP#0;class#Account#0" expanded="false" />
             <element signature="method#welcomeMessage#0;class#Account#0" expanded="false" />
             <element signature="method#adminLogin#0;class#Account#0" expanded="false" />
-            <element signature="method#password#0;class#Account#0" expanded="false" />
-            <element signature="method#createUser#0;class#Account#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/theironyard/novauc/ATMProgram.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="123">
-          <caret line="29" column="16" lean-forward="false" selection-start-line="29" selection-start-column="16" selection-end-line="29" selection-end-column="16" />
+        <state relative-caret-position="1500">
+          <caret line="220" column="47" lean-forward="false" selection-start-line="220" selection-start-column="47" selection-end-line="220" selection-end-column="47" />
           <folding>
-            <element signature="method#setChange#0;class#ATMProgram#0" expanded="false" />
             <element signature="method#checkBalance#0;class#ATMProgram#0" expanded="false" />
+            <element signature="method#withdrawChecking#0;class#ATMProgram#0" expanded="false" />
+            <element signature="method#withdrawSavings#0;class#ATMProgram#0" expanded="false" />
+            <element signature="method#cancel#0;class#ATMProgram#0" expanded="false" />
           </folding>
         </state>
       </provider>

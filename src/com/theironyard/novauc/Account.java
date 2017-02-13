@@ -54,10 +54,10 @@ public class Account {
     public static HashMap<String, Account> information = new HashMap<>();
 
     //Not sure if this method is being properly used
-    //TODO run debug mode to find if and where this program is being called from
-    public Account transferPerson (String transferPerson) {
-        return Account.information.get(transferPerson);
-    }
+//    //TODO run debug mode to find if and where this program is being called from
+//    public Account transferPerson (String transferPerson) {
+//        return Account.information.get(transferPerson);
+//    }
 
     //Not sure if this method is being properly used
     //TODO run debug mode to find if and where this program is being called from
@@ -99,17 +99,17 @@ public class Account {
     //Which if the program works correctly only a certain user can create and delete their own account
     public void adminLogin() throws Exception {
         System.out.print("Please enter your the administrator log-in name: ");
-        String logName = Main.kb.nextLine().toUpperCase();
+        String adminLogin = Main.kb.nextLine().toUpperCase();
 
-        if (logName.equalsIgnoreCase(information.get("administrator").getName())) {
+        if (adminLogin.equalsIgnoreCase(information.get("ADMINISTRATOR").getName())) {
             System.out.print("Please enter your password: ");
             String password = Main.kb.nextLine().toLowerCase();
-            if (password.equals(information.get("administrator").getPassword())) {
-                Main.program.Program("administrator");
+            if (password.equals(information.get("ADMINISTRATOR").getPassword())) {
+                Main.program.AdminProgram("ADMINISTRATOR");
             } else {
                 int attempts = 3;
 
-                while (attempts != 0 || !password.equals(information.get("administrator").getPassword())) {
+                while (attempts != 0 || !password.equals(information.get("ADMINISTRATOR").getPassword())) {
                     System.out.println("You have entered the wrong password you have "
                             + attempts + " more attempts left");
                     System.out.print("Please enter your correct password: ");
@@ -119,7 +119,7 @@ public class Account {
                 if (attempts == 0) {
                     password();
                 } else {
-                    Main.program.AdminProgram("administrator");
+                    Main.program.AdminProgram("ADMINISTRATOR");
                 }
             }
         }
@@ -127,43 +127,41 @@ public class Account {
 
     //This is a password verifier meant for customer login and uses most of the same methodology as the admin login
     public void password() throws Exception {
+        int bugFixLoop = 1;
+        while (bugFixLoop == 1) {
+            System.out.print("Please enter your log-in name: ");
+            String logName = Main.kb.nextLine().toUpperCase();
 
-        System.out.print("Please enter your log-in name: ");
-        String logName = Main.kb.nextLine().toUpperCase();
-
-        if(logName.equalsIgnoreCase("") || logName == null || logName.isEmpty()) {
-            System.out.println("You have entered a wrong name");
-            password();
-        }
-        else if((information.containsKey(logName))){
-            System.out.print("Please enter your password: ");
-            String password = Main.kb.nextLine().toLowerCase();
-            if (password.equals(information.get(logName).getPassword())) {
-                Main.program.Program(logName);
-            }
-            else {
-                int attempts = 3;
-                while (attempts != 0 && !password.equals(information.get(logName).getPassword())) {
-                    System.out.println("You have entered the wrong password you have "
-                            + attempts + " more attempts left");
-                    System.out.println("Please enter your correct password: ");
-                    password = Main.kb.nextLine();
-                    attempts--;
-                }
-                if (attempts<=0){
-                    System.out.println("You have no more attempts. You will now go to the home screen");
-                    welcomeMessage();
-                }
-                else{
+            if (logName.equalsIgnoreCase("") || logName == null || logName.isEmpty()) {
+                System.out.println("You have entered a wrong name");
+                password();
+            } else if ((information.containsKey(logName))) {
+                System.out.print("Please enter your password: ");
+                String password = Main.kb.nextLine().toLowerCase();
+                if (password.equals(information.get(logName).getPassword())) {
                     Main.program.Program(logName);
+                } else {
+                    int attempts = 3;
+                    while (attempts != 0 && !password.equals(information.get(logName).getPassword())) {
+                        System.out.println("You have entered the wrong password you have "
+                                + attempts + " more attempts left");
+                        System.out.println("Please enter your correct password: ");
+                        password = Main.kb.nextLine();
+                        attempts--;
+                    }
+                    if (attempts <= 0) {
+                        System.out.println("You have no more attempts. You will now go to the home screen");
+                        welcomeMessage();
+                    } else {
+                        Main.program.Program(logName);
+                    }
                 }
+            } else {
+                System.out.println("Have entered a name not inside this database");
+                System.out.println("Would you like to create a new account [Y/N]");
+                String userAnswer = Main.kb.nextLine();
+                createUser(userAnswer);
             }
-        }
-        else{
-            System.out.println("Have entered a name not inside this database");
-            System.out.println("Would you like to create a new account [Y/N]");
-            String userAnswer = Main.kb.nextLine();
-            createUser(userAnswer);
         }
     }
 
@@ -187,8 +185,41 @@ public class Account {
 
             information.put(createUser, new Account(createUser.toUpperCase(), createUser.toLowerCase(), createCheckBal,createSavingBal));
             System.out.println("###############      NEW USER CREATED      ################");
-
         }
         password();
+    }
+
+    //
+    public void deleteUser()throws Exception{
+        System.out.println("Please enter the username you would like to delete");
+        Main.kb.nextLine();
+        String deleteThisUser = Main.kb.nextLine().toUpperCase();
+        System.out.println();
+        System.out.println("You are about to delete "+ information.get(deleteThisUser).getName()+"s' account");
+        System.out.println("That account holds the current balances of");
+        System.out.printf("## [Checking Account] $%.2f   [Savings Account] $%.2f ##",
+                information.get(deleteThisUser).getCheckingBalance(),
+                information.get(deleteThisUser).getSavingBalance());
+        System.out.println();
+        int deletingChoice=3;
+        while(deletingChoice>0) {
+            System.out.println("Last Chance. Please confirm that you would like to continue deleting "
+                    + information.get(deleteThisUser).getName() + "s' account [Y/N]");
+            String deleteChoice = Main.kb.nextLine();
+            if(deleteChoice.equalsIgnoreCase("y")){
+                information.remove(deleteThisUser);
+                System.out.println(deleteThisUser.toLowerCase()+"'s Account has been deleted");
+                System.out.println("You will now be returning to the main menu");
+                welcomeMessage();
+            }
+            else if(deleteChoice.equalsIgnoreCase("n")){
+                System.out.println("Deleting account canceled");
+                System.out.println("You wil now return to the main login");
+                welcomeMessage();
+            }
+            else
+                deletingChoice--;
+        }
+        Main.program.cancel();
     }
 }
