@@ -7,6 +7,7 @@ public class ATMProgram {
     double quarters, dimes, nickles, pennies, remainder;
     int iQuarters,iDimes,iNickles,iPennies,bills;
 
+    //Improved change formula was checked to make sure it works
     public void setChange() {
         quarters = (int)(withdraw / .25);
         remainder = (withdraw % .25);
@@ -71,7 +72,7 @@ public class ATMProgram {
                 withdrawFunds(userKey);
         }
     }
-    //this is the method for withdrawing from checking account
+    //This is the method for withdrawing from checking account
     public void withdrawChecking(String userKey)throws Exception{
         System.out.println("PLEASE ENTER THE AMOUNT YOU WISH TO WITHDRAW");
         double currentWithdraw = Main.kb.nextDouble();
@@ -123,7 +124,7 @@ public class ATMProgram {
             }
         }
     }
-    //almost identical method for withdrawing from savings account
+    //Almost identical method for withdrawing from savings account
     public void withdrawSavings(String userKey)throws Exception{
 
         System.out.println("PLEASE ENTER THE AMOUNT YOU WISH TO WITHDRAW");
@@ -177,6 +178,7 @@ public class ATMProgram {
         }
     }
 
+    //This is a method for choosing which account you will be transfering from very basic
     public void transferFunds(String userKey)throws Exception {
         System.out.println("###############     TRANSFER FUNDS MENU    ################");
         System.out.println();
@@ -202,6 +204,9 @@ public class ATMProgram {
                         double transferFunds = Main.kb.nextDouble();
                         double newAmount = Main.User1.information.get(transferPerson).getCheckingBalance() + transferFunds;
                         Main.User1.information.get(transferPerson).setCheckingBalance(newAmount);
+                        System.out.println("Funds were successfully transferred ");
+                        System.out.println("Now returning to the main menu");
+                        Main.program.Program(userKey);
                     }
                     else{
                         System.out.println("The name you have entered does not have an account at this bank");
@@ -252,10 +257,12 @@ public class ATMProgram {
         System.out.println("PRESS 1 FOR : CHECK BALANCE");
         System.out.println("PRESS 2 FOR : WITHDRAW FUNDS");
         System.out.println("PRESS 3 FOR : TRANSFER FUNDS");
-        System.out.println("PRESS 4 FOR : EXIT ATM");
+        System.out.println("PRESS 4 FOR : DELETE MY ACCOUNT");
+        System.out.println("PRESS 5 FOR : EXIT TO LOGIN");
         System.out.println();
         System.out.println("#################################################");
         int chooseAdventure=Main.kb.nextInt();
+        Main.kb.nextLine();
         switch (chooseAdventure) {
             case 1:
                 checkBalance(userKey);
@@ -267,6 +274,8 @@ public class ATMProgram {
                 transferFunds(userKey);
                 break;
             case 4:
+                Main.User1.DeleteThisUser(userKey);
+            case 5:
                 cancel();
                 break;
             default:

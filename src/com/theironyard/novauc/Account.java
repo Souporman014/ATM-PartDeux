@@ -189,7 +189,34 @@ public class Account {
         password();
     }
 
-    //
+    //For each account so that they may delete their own account
+    public void DeleteThisUser(String userKey)throws Exception {
+        System.out.println();
+        System.out.println("You are about to delete " + information.get(userKey).getName() + "s' account");
+        System.out.println("That account holds the current balances of");
+        System.out.printf("## [Checking Account] $%.2f   [Savings Account] $%.2f ##",
+                information.get(userKey).getCheckingBalance(),
+                information.get(userKey).getSavingBalance());
+        System.out.println();
+        int deletingChoice = 3;
+        while (deletingChoice > 0) {
+            System.out.println("Last Chance. Please confirm that you would like to continue deleting your account [Y/N]");
+            String deleteChoice = Main.kb.nextLine();
+            if (deleteChoice.equalsIgnoreCase("y")) {
+                information.remove(userKey);
+                System.out.println("Your account has been deleted");
+                System.out.println("You will now be returning to the main menu");
+                welcomeMessage();
+            } else if (deleteChoice.equalsIgnoreCase("n")) {
+                System.out.println("Deleting account canceled");
+                System.out.println("You wil now return to the main login");
+                welcomeMessage();
+            } else
+                deletingChoice--;
+        }
+    }
+
+    //For admin login to delete ANY user
     public void deleteUser()throws Exception{
         System.out.println("Please enter the username you would like to delete");
         Main.kb.nextLine();
