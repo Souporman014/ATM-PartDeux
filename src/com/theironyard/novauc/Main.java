@@ -14,20 +14,39 @@ public class Main {
 
 
     //TODO this is a failed attempt to try and resolve the clearing the buffer
-//    public static String nextLine(){
-//        String line = kb.nextLine();
-//        int choice = 0;
-//        while (kb.hasNext()){
-//            if (kb.hasNextInt()){
-//                choice = kb.nextInt();
-//                break;
-//            } else {
-//                kb.next(); // Just discard this, not interested...
-//            }
-//        }
-//        //line = kb.nextLine();
-//        return line;
-//    }
+    public static String nextLine(){
+
+       while (kb.hasNext()){
+            if (kb.hasNextInt()){
+                int clearNumber = kb.nextInt();
+                break;
+            }else if(kb.hasNextLine()) {
+                String clearString = kb.nextLine();
+                break;
+            }else if (kb.hasNextDouble()){
+                double clearDouble=kb.nextDouble();
+                break;
+            }
+        }
+        String line = kb.nextLine();
+        return line;
+    }
+    public static double nextDouble(){
+        while (kb.hasNext()){
+            if (kb.hasNextInt()){
+                int clearNumber = kb.nextInt();
+                break;
+            }else if(kb.hasNextLine()) {
+                String clearString = kb.nextLine();
+                break;
+            }else if (kb.hasNextDouble()){
+                double clearDouble=kb.nextDouble();
+                break;
+            }
+        }
+        double  balance= kb.nextDouble();
+        return balance;
+    }
 
     public static void main(String[] args) throws Exception {
 
